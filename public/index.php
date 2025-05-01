@@ -41,7 +41,7 @@ function render($partial, $data = [])
     $skeleton = SITE_ROOT . 'app/view/public/skeleton.html';
     $partial = SITE_ROOT . 'app/view/public/' . $partial;
 
-    $skeleton = file_get_contents($skeleton);
+    $page = file_get_contents($skeleton);
 
     ob_start();
     include($partial);
