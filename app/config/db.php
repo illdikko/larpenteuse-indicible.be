@@ -1,9 +1,9 @@
 <?php
 
 $host = 'localhost';
-$db   = 'sandbox';
-$user = 'sandbox';
-$pass = 'sandbox';
+$db   = 'atelier_arpenteuse';
+$user = 'atelier_arpenteuse';
+$pass = 'QIxzS[(R0J7ck)z)';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
