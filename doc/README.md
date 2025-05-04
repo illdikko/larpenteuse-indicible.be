@@ -3,6 +3,7 @@
 # Projet CMS MVC PHP
 
 Ce projet est un système de gestion de contenu (CMS) développé avec une architecture MVC (Modèle-Vue-Contrôleur) en PHP. Il a été réalisé dans le cadre d'un projet de fin d'études.
+Le cahier des charges peut être trouvé ici : https://github.com/EFP-DEV/1-X75-Atelier/blob/main/README.md .
 
 ## 🌟 Fonctionnalités
 
