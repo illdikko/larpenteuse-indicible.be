@@ -8,7 +8,7 @@ function index() {
     
     // Prepare data array for render function
     $data = [
-        'head_title' => 'Catalog', // This will replace %%HEAD_TITLE%% in skeleton
+        'head_title' => 'Catalogue', // This will replace %%HEAD_TITLE%% in skeleton
         'items' => $items // This will be available in the view
     ];
     
