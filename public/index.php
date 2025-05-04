@@ -25,7 +25,16 @@ if(file_exists($controller_path)){
 
     if(function_exists($action)){
         // echo "$controller has function $action";
-        call_user_func($action);
+
+        if($action == 'send') {
+            // Include database connection
+            require_once SITE_ROOT . 'app/config/db.php';
+            // Call the function with required parameters
+            call_user_func($action, $pdo, $_POST);
+        } else {
+            // Call function without parameters for other actions
+            call_user_func($action);
+        }
     } else {
         http_response_code(404);
         exit("404 Function « {$action} » in Controller « {$controller} » does not exist");

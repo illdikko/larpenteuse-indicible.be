@@ -1,24 +1,73 @@
 <?php
+// Access items through the $data array
+?>
+
+<?php
+require_once __DIR__ . "/../../model/public/contact.php";
+
+function cleanInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    return $data;
+}
 
 function index()
 {
-    // echo 'SHOW FORM';
-    render('contact/form.php');
+    $data = [];
+    $data['head_title'] = 'Contact';
+    $data['post_data'] = [
+        'nom' => '',
+        'prenom' => '',
+        'email' => '',
+        'sujet'=> '',
+        'contenu' => ''
+    ];
+    render('contact/form.php', $data);
     // include SITE_ROOT . 'app/view/public/contact/form.php';
+
 }
 
-function send()
+function send($pdo, $formData)
 {
-    // traitement du formulaire (stocker en db + envoyer un mail un sms )
-    $processingWentFine = false;
-    if($processingWentFine){
-        render('contact/success.php');
+    // Clean and validate input data
+    $cleanData = [
+        'nom' => cleanInput($formData['nom'] ?? ''),
+        'prenom' => cleanInput($formData['prenom'] ?? ''),
+        'email' => cleanInput($formData['email'] ?? ''),
+        'sujet' => cleanInput($formData['sujet'] ?? ''),
+        'contenu' => cleanInput($formData['contenu'] ?? '')
+    ];
+
+    // Validate required fields
+    $errors = [];
+    if (empty($cleanData['nom'])) $errors[] = "Le nom est requis";
+    if (empty($cleanData['prenom'])) $errors[] = "Le prénom est requis";
+    if (empty($cleanData['email'])) {
+        $errors[] = "L'email est requis";
+    } elseif (!filter_var($cleanData['email'], FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Format d'email invalide";
     }
-    else{
+    if (empty($cleanData['contenu'])) $errors[] = "Le message est requis";
+
+    if (!empty($errors)) {
         $data = [];
-        $data['error'] = 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.';
-        $data['post_data'] = $_POST;
+        $data['error'] = implode(', ', $errors);
+        $data['post_data'] = $formData;
+        $data['head_title'] = 'Contact - Error';
+        render('contact/form.php', $data);
+        return;
+    }
+
+    // Call model function to insert data
+    if (insertContactMessage($pdo, $cleanData)) {
+        render('contact/success.php');
+    } else {
+        $data = [];
+        $data['error'] = "Une erreur est survenue lors de l'envoi du message";
+        $data['post_data'] = $formData;
         $data['head_title'] = 'Contact - Error';
         render('contact/form.php', $data);
     }
 }
+?>
