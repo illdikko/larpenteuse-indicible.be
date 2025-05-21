@@ -48,6 +48,8 @@ function send($pdo, $formData)
     } elseif (!filter_var($cleanData['email'], FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Format d'email invalide";
     }
+    if (empty($cleanData['sujet'])) $errors[] = "Le sujet est requis";
+
     if (empty($cleanData['contenu'])) $errors[] = "Le message est requis";
 
     if (!empty($errors)) {
