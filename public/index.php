@@ -15,7 +15,13 @@ if(empty($uri_parts[1])){
     $action = 'index';
 }
 else{
-    $action = $uri_parts[1];
+        // Si le contrôleur est 'item', on garde 'index' comme action
+    // et on laisse le slug être géré par le contrôleur
+    if ($controller === 'item') {
+        $action = 'index';
+    } else {
+        $action = $uri_parts[1];
+    }
 }
 
 $controller_path = SITE_ROOT . "app/controller/public/$controller.php";

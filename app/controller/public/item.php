@@ -1,7 +1,29 @@
 <?php
 
+require_once __DIR__ . '/../../model/public/item.php';
+require_once __DIR__ . '/../../config/db.php';
 function index(){
-    render('item/item.php');
+    global $pdo;
+
+        // Récupérer le slug depuis l'URL
+    $uri_parts = explode('/', $_SERVER['REQUEST_URI']);
+    $slug = $uri_parts[2] ?? null;
+
+    if (!$slug){
+        header('Location: /catalog');
+        exit;
+    }
+
+    $item = getItem($pdo, $slug);
+
+    if (!$item) {
+        // Gérer le cas où l'item n'existe pas
+        header('HTTP/1.0 404 Not Found');
+        render('404.php');
+        return;
+    }
+
+    render('item/item.php', ['item' => $item]);
 }
 
 /* Si ma fonction render doit appeler la vue correspondante , ici item.php, comment rendre dynamique?

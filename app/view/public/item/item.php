@@ -22,7 +22,7 @@
 
     </div>
 
-    <h2><?php echo $item['label']; ?></h2>
-    <p><?php echo $item['prix']; ?></p>
-    <p><?php echo $item['description']; ?></p>
+    <h2><?php echo $data['item']['label']; ?></h2>
+    <p><?php echo $data['item']['prix']; ?></p>
+    <p><?php echo $data['item']['description']; ?></p>
 </main>
