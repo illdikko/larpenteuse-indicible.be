@@ -1,5 +1,8 @@
 <?php
 
 function index(){
-    render('/privacy.php');
+      $data = [
+        'head_title' => 'Privacy Policy - L\'Arpenteuse de l\'Indicible'
+    ];
+    render('/privacy.php', $data);
 }

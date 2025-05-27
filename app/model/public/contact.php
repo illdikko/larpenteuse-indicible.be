@@ -1,10 +1,8 @@
 <?php
 
-require_once __DIR__ . "/../../config/db.php";
-
-function insertContactMessage($pdo, $data) {
+function insertContactMessage($arien, $data) {
     try {
-        $stmt = $pdo->prepare("INSERT INTO message 
+        $stmt = db()->prepare("INSERT INTO message 
             (nom, prenom, email, sujet, contenu, date_de_reception, is_read) 
             VALUES (:nom, :prenom, :email, :sujet, :contenu, NOW(), 0)");
 

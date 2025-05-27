@@ -1,6 +1,7 @@
 <?php
 
 function index(){
-    render('about/about.php');
+    $data=['head_title' => 'About - L\'Arpenteuse de l\'Indicible'];
+    render('about/about.php', $data);
 }
 

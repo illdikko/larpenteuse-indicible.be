@@ -15,7 +15,7 @@ function cleanInput($data) {
 function index()
 {
     $data = [];
-    $data['head_title'] = 'Contact';
+    $data['head_title'] = 'Contact - L\'Arpenteuse de l\'Indicible';
     $data['post_data'] = [
         'nom' => '',
         'prenom' => '',
@@ -28,7 +28,7 @@ function index()
 
 }
 
-function send($pdo, $formData)
+function send(db(), $formData)
 {
     // Clean and validate input data
     $cleanData = [
@@ -62,7 +62,7 @@ function send($pdo, $formData)
     }
 
     // Call model function to insert data
-    if (insertContactMessage($pdo, $cleanData)) {
+    if (insertContactMessage(db(), $cleanData)) {
         render('contact/success.php');
     } else {
         $data = [];

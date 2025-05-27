@@ -1,5 +1,8 @@
 <?php
 
 function index(){
-    render('/terms.php');
+      $data = [
+        'head_title' => 'Termes et conditions - L\'Arpenteuse de l\'Indicible'
+    ];
+    render('/terms.php',$data);
 }

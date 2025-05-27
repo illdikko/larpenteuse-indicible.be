@@ -4,6 +4,8 @@ define('SITE_ROOT', __DIR__ . '/../');
 $uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 array_shift($uri_parts);
 
+require_once SITE_ROOT . 'app/config/db.php';
+
 if(empty($uri_parts[0])){
     $controller = 'home';
 }
@@ -36,7 +38,7 @@ if(file_exists($controller_path)){
             // Include database connection
             require_once SITE_ROOT . 'app/config/db.php';
             // Call the function with required parameters
-            call_user_func($action, $pdo, $_POST);
+            call_user_func($action, db(), $_POST);
         } else {
             // Call function without parameters for other actions
             call_user_func($action);
@@ -55,6 +57,11 @@ function render($partial, $data = [])
 {
     $skeleton = SITE_ROOT . 'app/view/public/skeleton.html';
     $partial = SITE_ROOT . 'app/view/public/' . $partial;
+
+        // Définir un titre par défaut
+    if (empty($data['head_title'])) {
+        $data['head_title'] = 'L\'Arpenteuse de l\'Indicible';
+    }
 
     $page = file_get_contents($skeleton);
 

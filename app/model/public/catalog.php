@@ -1,10 +1,9 @@
 <?php
 
-require_once __DIR__ . "/../../config/db.php";
 
-function getItem($pdo) {
+function getItem() {
     try {
-        $stmt = $pdo->prepare("SELECT * FROM item");
+        $stmt = db()->prepare("SELECT * FROM item");
         $stmt->execute();
         $results = $stmt->fetchAll();
         

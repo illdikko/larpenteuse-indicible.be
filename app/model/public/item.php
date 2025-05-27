@@ -1,11 +1,10 @@
 <?php
 
-require_once __DIR__ . "/../../config/db.php";
 
 //Même requête que pour le catalogue... où est l'erreur? Il fallait préciser la recherche par slug.
-function getItem($pdo, $slug) {
+function getItem($arien, $slug) {
     try {
-        $stmt = $pdo->prepare("SELECT * FROM item WHERE slug=:slug");
+        $stmt = db()->prepare("SELECT * FROM item WHERE slug=:slug");
         $stmt->execute(['slug'=> $slug]);
         $results = $stmt->fetch();
         
