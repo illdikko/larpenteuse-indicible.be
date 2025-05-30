@@ -2,9 +2,16 @@ RewriteEngine On
 
 RewriteRule ^assets/(.*)$ assets/$1 [L]
 
-# Ensure we are not redirecting requests for actual files/folders
+# Rediriger les requêtes admin vers le bon index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin/(.*)$ admin/index.php [QSA,L]
 
-# Redirect all requests to index.php
+# Ensure we are not redirecting requests for actual files/folders (pour le reste)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Exclure les requêtes admin (déjà traitées au-dessus)
+RewriteCond %{REQUEST_URI} !^/admin/
+
+# Redirect all other requests to index.php
 RewriteRule ^(.*)$ index.php [QSA,L]

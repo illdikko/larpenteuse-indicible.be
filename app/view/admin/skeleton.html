@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>%%HEAD_TITLE%% - Administration</title>
+    <script type="text/javascript" src="/assets/js/admin/sidebar.js"></script>
+    <link rel="stylesheet" href="/assets/css/admin.css" media="screen" />
+</head>
+
+<body>
+    <div class="admin-container">
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <h1>Administration</h1>
+                <div class="sidebar-toggle">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <ul>
+                <li><a href="/admin">Tableau de bord</a></li>
+                <li><a href="/admin/content">Contenus</a></li>
+                <li><a href="/admin/categories">Catégories</a></li>
+                <li><a href="/admin/messages">Messages</a></li>
+                <li class="logout"><a href="/admin/logout">Déconnexion</a></li>
+            </ul>
+        </nav>
+        <main class="admin-content">
+            %%MAIN_CONTENT%%
+        </main>
+    </div>
+    <footer class="admin-footer">
+        <p class="copyright">© Administration - L'Arpenteuse de l'Indicible 2025</p>
+    </footer>
+</body>
+
+</html>
