@@ -28,7 +28,7 @@ function index()
 
 }
 
-function send(db(), $formData)
+function send($formData)
 {
     // Clean and validate input data
     $cleanData = [

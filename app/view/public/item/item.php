@@ -3,7 +3,7 @@
 
         <!-- Modifier ensuite pour un caroussel dynamique : autant de div que d'images pour l'item -->
         <div class="carousel-picture">
-            <img src="/api/placeholder/800/600" alt="Photo de l'article 1">
+            <img src="/images/<?= $data['item']['slug'] ?>/<?= $data['item']['primary_picture'] ?>" alt="Photo de l'article 1">
         </div>
         <div class="carousel-picture">
             <img src="/api/placeholder/800/600" alt="Photo de l'article 2">
