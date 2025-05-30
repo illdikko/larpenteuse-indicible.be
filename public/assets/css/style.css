@@ -1,0 +1,607 @@
+/* ==========================================================================
+   L'Arpenteuse de l'Indicible - Template CSS Lovecraftien
+   Mobile-First | Progressive Enhancement | WCAG 2.1 AA
+   ========================================================================== */
+
+/* Variables CSS pour la personnalisation */
+:root {
+  /* Palette de couleurs */
+  --color-primary: #ae5900;
+  --color-secondary: #a06100;
+  --color-accent: #783506;
+  --color-dark: #381504;
+  --color-light: #f0cb9f;
+  
+  /* Couleurs fonctionnelles */
+  --color-bg: var(--color-dark);
+  --color-surface: #2a0f03;
+  --color-text: var(--color-light);
+  --color-text-muted: #c49570;
+  --color-border: var(--color-accent);
+  --color-shadow: rgba(56, 21, 4, 0.8);
+  
+  /* États interactifs */
+  --color-hover: var(--color-primary);
+  --color-focus: var(--color-secondary);
+  --color-active: var(--color-accent);
+  
+  /* Typographie */
+  --font-title: 'True Typewriter', 'Courier New', monospace;
+  --font-subtitle: 'Lumios typewriter old', 'Courier New', monospace;
+  --font-body: 'Lumios typewriter tape', 'Courier New', monospace;
+  
+  /* Tailles avec clamp() pour scaling fluide */
+  --font-size-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);
+  --font-size-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);
+  --font-size-base: clamp(0.9rem, 0.85rem + 0.3vw, 1rem);
+  --font-size-lg: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
+  --font-size-xl: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
+  --font-size-2xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-size-3xl: clamp(1.5rem, 1.25rem + 1.25vw, 1.875rem);
+  --font-size-4xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.25rem);
+  
+  /* Espacements avec clamp() pour scaling fluide */
+  --space-xs: clamp(0.375rem, 0.25rem + 0.625vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 0.375rem + 0.625vw, 0.75rem);
+  --space-md: clamp(0.75rem, 0.625rem + 0.625vw, 1rem);
+  --space-lg: clamp(1rem, 0.75rem + 1.25vw, 1.5rem);
+  --space-xl: clamp(1.5rem, 1rem + 2.5vw, 2rem);
+  --space-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --space-3xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+  
+  /* Bordures et ombres */
+  --border-radius: 4px;
+  --border-width: 2px;
+  --shadow-sm: 0 2px 4px var(--color-shadow);
+  --shadow-md: 0 4px 8px var(--color-shadow);
+  --shadow-lg: 0 8px 16px var(--color-shadow);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+  
+  /* Largeurs de conteneur */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+/* ==========================================================================
+   Reset et base
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Focus visible pour l'accessibilité */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Sélection de texte */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+}
+
+/* ==========================================================================
+   Typographie
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+  color: var(--color-light);
+  text-shadow: 2px 2px 4px var(--color-shadow);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--space-lg);
+}
+
+h2 {
+  font-family: var(--font-subtitle);
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-muted);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  margin-bottom: var(--space-md);
+  max-width: 65ch;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+a:hover, a:focus {
+  color: var(--color-hover);
+  text-decoration-thickness: 2px;
+}
+
+/* ==========================================================================
+   Layout principal
+   ========================================================================== */
+
+/* Header */
+header {
+  background-color: var(--color-surface);
+  border-bottom: var(--border-width) solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  position: relative;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  font-family: var(--font-subtitle);
+  font-size: var(--font-size-lg);
+  text-decoration: none;
+  color: var(--color-text);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.navbar a:hover, .navbar a:focus {
+  color: var(--color-hover);
+  background-color: rgba(174, 89, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: all var(--transition-normal);
+  transform: translateX(-50%);
+}
+
+.navbar a:hover::after, .navbar a:focus::after {
+  width: 100%;
+}
+
+/* Menu burger (mobile) */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: var(--space-xs);
+  gap: 4px;
+}
+
+.burger .line {
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-text);
+  transition: all var(--transition-normal);
+  border-radius: 2px;
+}
+
+.burger:hover .line {
+  background-color: var(--color-hover);
+}
+
+/* Main content */
+main {
+  flex: 1;
+  padding: var(--space-xl) var(--space-md);
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Page d'accueil */
+main h1 {
+  text-align: center;
+  font-size: clamp(1.875rem, 2rem + 3vw, 3rem);
+  margin-bottom: var(--space-xl);
+  animation: fadeInUp var(--transition-slow) ease-out;
+}
+
+main h2 {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  animation: fadeInUp var(--transition-slow) ease-out 0.2s both;
+}
+
+main p {
+  text-align: center;
+  margin: 0 auto var(--space-xl);
+  animation: fadeInUp var(--transition-slow) ease-out 0.4s both;
+}
+
+/* ==========================================================================
+   Catalogue - Grid Layout
+   ========================================================================== */
+
+/* Grille des articles */
+main:has(.item-card) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-md);
+}
+
+.item-card {
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.item-img {
+  width: 100%;
+  height: clamp(180px, 20vw, 200px);
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--space-md);
+  transition: transform var(--transition-normal);
+}
+
+.item-card:hover .item-img {
+  transform: scale(1.02);
+}
+
+.item-card-title {
+  font-family: var(--font-subtitle);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-sm);
+  color: var(--color-light);
+}
+
+.item-card-title:hover {
+  color: var(--color-hover);
+}
+
+.item-description {
+  flex: 1;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.item-price {
+  font-family: var(--font-subtitle);
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--color-primary);
+  text-align: right;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+footer {
+  background-color: var(--color-surface);
+  border-top: var(--border-width) solid var(--color-border);
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  margin-top: auto;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+footer a {
+  font-family: var(--font-subtitle);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+footer a:hover, footer a:focus {
+  color: var(--color-hover);
+}
+
+.copyright {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Animation au survol des éléments interactifs */
+.item-card, .navbar a {
+  animation: none;
+}
+
+.item-card:hover {
+  animation: pulse 2s infinite;
+}
+
+/* ==========================================================================
+   Responsive Design - Mobile First
+   ========================================================================== */
+
+/* Très petits écrans */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+  
+  .burger {
+    display: flex;
+    align-self: flex-end;
+  }
+  
+  /* Menu mobile ouvert */
+  .navbar.active ul {
+    display: flex;
+  }
+  
+  .navbar.active .burger .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .navbar.active .burger .line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .navbar.active .burger .line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+  
+  main:has(.item-card) {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
+  footer ul {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+}
+
+/* Tablettes */
+@media (min-width: 768px) {
+  main {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+  
+  main:has(.item-card) {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-2xl);
+  }
+  
+  .item-img {
+    height: clamp(200px, 30vw, 240px);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .navbar {
+    padding: var(--space-lg) var(--space-xl);
+  }
+  
+  main {
+    padding: var(--space-3xl) var(--space-xl);
+  }
+  
+  main:has(.item-card) {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  
+  .item-img {
+    height: clamp(180px, 25vw, 280px);
+  }
+}
+
+/* Grand écran */
+@media (min-width: 1280px) {
+  main:has(.item-card) {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+}
+
+/* ==========================================================================
+   Accessibilité WCAG 2.1 AA
+   ========================================================================== */
+
+/* Préférences de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Contraste élevé pour les utilisateurs qui en ont besoin */
+@media (prefers-contrast: high) {
+  :root {
+    --color-text: #ffffff;
+    --color-bg: #000000;
+    --color-border: #ffffff;
+  }
+}
+
+/* Mode sans images pour économiser la bande passante */
+@media (prefers-reduced-data: reduce) {
+  .item-img {
+    display: none;
+  }
+  
+  .item-card::before {
+    content: "Image non chargée pour économiser les données";
+    display: block;
+    text-align: center;
+    padding: var(--space-xl);
+    background-color: var(--color-accent);
+    color: var(--color-light);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-md);
+  }
+}
+
+/* États de focus améliorés */
+a:focus-visible,
+.burger:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* Taille de police respectant les préférences utilisateur */
+@media (min-width: 768px) {
+  html {
+    font-size: 112.5%; /* 18px base au lieu de 16px */
+  }
+}
+
+/* Assurer que les éléments interactifs ont une taille minimale de 44px */
+.navbar a,
+.burger {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Utilitaires
+   ========================================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-primary);
+  color: var(--color-light);
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}

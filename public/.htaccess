@@ -1,5 +1,7 @@
 RewriteEngine On
 
+RewriteRule ^assets/(.*)$ assets/$1 [L]
+
 # Ensure we are not redirecting requests for actual files/folders
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
