@@ -76,6 +76,14 @@ CREATE TABLE Collection_Item(
     FOREIGN KEY (collection_id) REFERENCES Collection(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
+-- Table connexions --
+CREATE TABLE login_attempts (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     user_id INT,
+     attempt_time DATETIME,
+     FOREIGN KEY (user_id) REFERENCES operator(id) );
+
+
 
 -- -- Table Moyen de paiement
 -- CREATE TABLE Moyens_de_paiement (
