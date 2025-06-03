@@ -1,4 +1,4 @@
-<main>
+<main data-item-slug="<?= $data['item']['slug']; ?>">
     <div class="carousel">
         <div class="carousel-container">
             <div class="carousel-picture active">
@@ -17,7 +17,9 @@
         </div>
     </div>
     
-    <h2><?php echo $data['item']['label']; ?></h2>
-    <p><?php echo $data['item']['prix']; ?></p>
-    <p><?php echo $data['item']['description']; ?></p>
+    <h2><?= $data['item']['label']; ?></h2>
+    <p><?= $data['item']['prix']; ?></p>
+    <p><?= $data['item']['description']; ?></p>
+
+    <button class="add-to-cart">Ajouter au panier</button>
 </main>
