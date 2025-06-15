@@ -22,4 +22,5 @@
     <p><?= $data['item']['description']; ?></p>
 
     <button class="add-to-cart">Ajouter au panier</button>
+    <button class="sub-from-cart">Retirer du panier</button>
 </main>

@@ -6,7 +6,7 @@ $items = $data['items'] ?? [];
 <?php if (!empty($items)): ?>
 
     <?php foreach ($items as $item): ?>
-        <article class="item-card" data-item-slug="">
+        <article class="item-card" data-item-slug="<?= $item['slug']; ?>">
             <img class="item-img" src="/images/<?= $item['slug']; ?>/<?= $item['primary_picture']; ?>"
                 alt="<?= $item['label']; ?>">
             <a href="/item/<?= $item['slug']; ?>">
@@ -14,6 +14,7 @@ $items = $data['items'] ?? [];
             </a>
             <p class="item-description"><?= $item['description']; ?></p>
             <p class="item-price"><?= number_format((float) $item['prix'], 2, ',', ' '); ?> €</p>
+            <button class="add-to-cart">+</button><button class="sub-from-cart">-</button>
         </article>
     <?php endforeach; ?>
 
